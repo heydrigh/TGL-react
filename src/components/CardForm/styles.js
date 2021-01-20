@@ -27,8 +27,10 @@ export const InputsWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-
-  label {
+  div {
+    display: flex;
+    flex-direction: column;
+    label {
     text-align: left;
     font: italic normal bold 17px Helvetica Neue;
     margin-top: 34px;
@@ -41,6 +43,8 @@ export const InputsWrapper = styled.div`
     flex: 1;
     border-bottom: 2px solid #EBEBEB;
   }
+  }
+
 `;
 
 export const OptionalLink = styled.span`
@@ -50,6 +54,11 @@ export const OptionalLink = styled.span`
   letter-spacing: 0px;
   color: #C1C1C1;
   margin-top: 27px;
+  margin-right: 27px;
+  a {
+    text-decoration: none;
+    color: #C1C1C1;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -61,6 +70,9 @@ export const SubmitButton = styled.button`
   background: none;
   margin-top: 44px;
   margin-bottom: 43px;
+  svg {
+    vertical-align: middle;
+  }
 `;
 
 export const LastButton = styled.span`
@@ -70,5 +82,10 @@ export const LastButton = styled.span`
   letter-spacing: 0px;
   color: #707070;
   margin-top: 30px;
+
+  a {
+    text-decoration: none;
+    color: #707070;
+  }
 `;
 
