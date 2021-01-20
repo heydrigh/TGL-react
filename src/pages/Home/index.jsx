@@ -3,6 +3,7 @@ import * as S from './styles';
 
 import CardForm from '../../components/CardForm';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   const inputFields = [
@@ -28,6 +29,7 @@ const Home = () => {
         lastButtonText="Sign Up"
         lastIconRight={true}
       />
+      <Footer />
     </S.Wrapper>
   );
 };
