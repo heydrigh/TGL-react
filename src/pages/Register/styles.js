@@ -1,10 +1,10 @@
-import styled, {keyframes} from 'styled-components';
+import styled,{keyframes} from 'styled-components';
 import media from 'styled-media-query';
 
-const appearFromLeft = keyframes`
+const appearFromRight = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(50px);
   }
   to {
     opacity: 1;
@@ -19,12 +19,10 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
-  animation: ${appearFromLeft} 1s;
+  animation: ${appearFromRight} 1s;
 
   ${media.lessThan('medium')`
     flex-direction: column;
     margin-top: 70px;
   `}
 `;
-
-

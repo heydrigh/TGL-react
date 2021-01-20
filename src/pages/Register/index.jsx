@@ -4,11 +4,15 @@ import * as S from './styles';
 import CardForm from '../../components/CardForm';
 import Header from '../../components/Header';
 
-const Home = () => {
+const Register = () => {
   const inputFields = [
     {
-      label: 'Email',
+      label: 'Name',
       type: 'text'
+    },
+    {
+      label: 'Email',
+      type: 'email'
     },
     {
       label: 'Password',
@@ -19,17 +23,14 @@ const Home = () => {
     <S.Wrapper>
       <Header />
       <CardForm
-        header="Authentication"
-        optionalLink="/resetpassword"
-        optionalText="I forgot my password"
+        header="Registration"
         inputFields={inputFields}
-        submitButtonText="Log In"
-        lastButtonLink="/register"
-        lastButtonText="Sign Up"
-        lastIconRight={true}
+        submitButtonText="Register"
+        lastButtonLink="/"
+        lastButtonText="Back"
       />
     </S.Wrapper>
   );
 };
 
-export default Home;
+export default Register;

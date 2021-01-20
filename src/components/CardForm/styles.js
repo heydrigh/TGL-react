@@ -34,7 +34,7 @@ export const InputsWrapper = styled.div`
     text-align: left;
     font: italic normal bold 17px Helvetica Neue;
     margin-top: 34px;
-  margin-left: 30px;
+    margin-left: 30px;
     letter-spacing: 0px;
     color: #9D9D9D;
   }
@@ -42,6 +42,7 @@ export const InputsWrapper = styled.div`
   input {
     flex: 1;
     border-bottom: 2px solid #EBEBEB;
+    color: #9D9D9D;
   }
   }
 
