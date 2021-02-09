@@ -21,17 +21,19 @@ const Register = () => {
     }
   ];
   return (
-    <S.Wrapper>
-      <Header />
-      <CardForm
-        header="Registration"
-        inputFields={inputFields}
-        submitButtonText="Register"
-        lastButtonLink="/"
-        lastButtonText="Back"
-      />
+    <>
+      <S.Wrapper>
+        <Header />
+        <CardForm
+          header="Registration"
+          inputFields={inputFields}
+          submitButtonText="Register"
+          lastButtonLink="/"
+          lastButtonText="Back"
+        />
+      </S.Wrapper>
       <Footer />
-    </S.Wrapper>
+    </>
   );
 };
 

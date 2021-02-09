@@ -14,17 +14,19 @@ const ResetPassword = () => {
   ];
 
   return (
-    <S.Wrapper>
-      <Header />
-      <CardForm
-        header="Reset password"
-        inputFields={inputFields}
-        submitButtonText="Send link"
-        lastButtonLink="/"
-        lastButtonText="Back"
-      />
+    <>
+      <S.Wrapper>
+        <Header />
+        <CardForm
+          header="Reset password"
+          inputFields={inputFields}
+          submitButtonText="Send link"
+          lastButtonLink="/"
+          lastButtonText="Back"
+        />
+      </S.Wrapper>
       <Footer />
-    </S.Wrapper>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.h1`
   text-align: center;
-  font: italic normal bold 35px Helvetica Neue;
+  font: italic normal bold 35px Arial;
   letter-spacing: 0px;
   color: #707070;
   margin-bottom: 25px;
@@ -32,7 +32,7 @@ export const InputsWrapper = styled.div`
     flex-direction: column;
     label {
     text-align: left;
-    font: italic normal bold 17px Helvetica Neue;
+    font: italic normal bold 17px Arial;
     margin-top: 34px;
     margin-left: 30px;
     letter-spacing: 0px;
@@ -51,7 +51,7 @@ export const InputsWrapper = styled.div`
 export const OptionalLink = styled.span`
   flex: 1;
   text-align: right;
-  font: italic normal normal 17px Helvetica Neue;
+  font: italic normal normal 17px Arial;
   letter-spacing: 0px;
   color: #C1C1C1;
   margin-top: 27px;
@@ -65,7 +65,7 @@ export const OptionalLink = styled.span`
 export const SubmitButton = styled.button`
   flex: 1;
   text-align: center;
-  font: italic normal bold 35px Helvetica Neue;
+  font: italic normal bold 35px Arial;
   letter-spacing: 0px;
   color: #B5C401;
   background: none;
@@ -74,12 +74,16 @@ export const SubmitButton = styled.button`
   svg {
     vertical-align: middle;
   }
+  a {
+    text-decoration: none;
+    color: #B5C401;
+  }
 `;
 
 export const LastButton = styled.span`
   flex: 1;
   text-align: center;
-  font: italic normal bold 35px Helvetica Neue;
+  font: italic normal bold 35px Arial;
   letter-spacing: 0px;
   color: #707070;
   margin-top: 30px;

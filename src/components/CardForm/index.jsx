@@ -8,6 +8,7 @@ const CardForm = ({
   optionalLink,
   optionalText,
   submitButtonText,
+  submitButtonLink,
   lastButtonText,
   lastButtonLink,
   inputFields,
@@ -31,7 +32,9 @@ const CardForm = ({
           </S.OptionalLink>
         )}
         <S.SubmitButton>
-          {submitButtonText} <AiOutlineArrowRight size={30} />
+          <Link to={submitButtonLink}>
+            {submitButtonText} <AiOutlineArrowRight size={30} />
+          </Link>
         </S.SubmitButton>
       </S.Card>
       {lastIconRight ? (

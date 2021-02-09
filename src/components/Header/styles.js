@@ -14,7 +14,7 @@ export const Header = styled.div`
 
 export const Great = styled.h1`
 text-align: center;
-font: italic normal bold 65px Helvetica Neue;
+font: italic normal bold 65px Arial;
 letter-spacing: 0px;
 `;
 
@@ -27,14 +27,14 @@ export const For = styled.span`
   background: #B5C401 0% 0% no-repeat padding-box;
   border-radius: 100px;
   text-align: center;
-  font: italic normal bold 22px Helvetica Neue;
+  font: italic normal bold 22px Arial;
   letter-spacing: 0px;
   color: #fff;
 `;
 
 export const Lottery = styled.h1`
   text-align: center;
-  font: italic normal bold 83px Helvetica Neue;
+  font: italic normal bold 83px Arial;
   letter-spacing: 0px;
   color: #707070;
   text-transform: uppercase;

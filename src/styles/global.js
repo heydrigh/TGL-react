@@ -1,14 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Helvetica Neue';
-    src: url('../assets/fonts/helveticaNeuaMed.ttf');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-  }
-
   * {
     margin: 0;
     padding: 0;

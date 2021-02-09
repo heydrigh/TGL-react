@@ -17,20 +17,23 @@ const Home = () => {
     }
   ];
   return (
-    <S.Wrapper>
-      <Header />
-      <CardForm
-        header="Authentication"
-        optionalLink="/resetpassword"
-        optionalText="I forgot my password"
-        inputFields={inputFields}
-        submitButtonText="Log In"
-        lastButtonLink="/register"
-        lastButtonText="Sign Up"
-        lastIconRight={true}
-      />
+    <>
+      <S.Wrapper>
+        <Header />
+        <CardForm
+          header="Authentication"
+          optionalLink="/resetpassword"
+          optionalText="I forgot my password"
+          inputFields={inputFields}
+          submitButtonText="Log In"
+          submitButtonLink="/newgame"
+          lastButtonLink="/register"
+          lastButtonText="Sign Up"
+          lastIconRight={true}
+        />
+      </S.Wrapper>
       <Footer />
-    </S.Wrapper>
+    </>
   );
 };
 

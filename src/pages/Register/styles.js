@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   margin-top: 154px;
   align-items: center;
   justify-content: space-evenly;
+  overflow-x: hidden;
 
   animation: ${appearFromRight} 1s;
 

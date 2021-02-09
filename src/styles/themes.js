@@ -1,7 +1,7 @@
 export default {
   font: {
     family:
-      "'Helvetica Neue',Roboto, Ubuntu, 'Open Sans',  sans-serif",
+      "Arial ,Roboto, Ubuntu, 'Open Sans',  sans-serif",
     bold: 600,
   },
   colors: {

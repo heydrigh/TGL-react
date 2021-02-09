@@ -11,7 +11,7 @@ export const Wrapper = styled.footer`
   height: 80px;
   border-top: 2px solid #EBEBEB;
   text-align: center;
-  font: normal normal normal 15px Helvetica Neue;
+  font: normal normal normal 15px Arial;
   letter-spacing: 0px;
   color: #707070;
 
