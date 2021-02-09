@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Menu from '../../components/Menu';
 import LotteryButton from '../../components/LotteryButton';
 
 const NewGame = () => {
+  const [lotteryButtons, setLotteryButtons] = useState([]);
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <Menu homeText="Home" accountText="Account" logOutText="Log out" />
@@ -15,7 +19,9 @@ const NewGame = () => {
         <S.ChoiceWrapper>
           <S.ChoiceHeader>Choose a game</S.ChoiceHeader>
           <S.ChoicesButtons>
-            <LotteryButton />
+            <LotteryButton lotteryName="Lotofácil" color="#7F3992" />
+            <LotteryButton lotteryName="Mega-Sena" color="#01AC66" />
+            <LotteryButton lotteryName="Quina" color="#F79C31" />
           </S.ChoicesButtons>
         </S.ChoiceWrapper>
         <S.InstructionsWrapper>
