@@ -16,10 +16,10 @@ const appearFromLeft = keyframes`
 export const Wrapper = styled.div`
   display: flex;
   align-self: center;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
   margin-top: 72px;
   align-items: center;
-  justify-content: space-evenly;
   overflow-x: hidden;
 
   animation: ${appearFromLeft} 1s;
@@ -28,6 +28,13 @@ export const Wrapper = styled.div`
     flex-direction: column;
     margin-top: 70px;
   `}
+`;
+
+export const GamesWrapper = styled.div`
+  width: 1080px;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
 `;
 
 export const GameHeader = styled.div`
@@ -69,15 +76,24 @@ export const ChoicesButtons = styled.div`
   margin-top: 20px;
 `;
 
-export const InstructionsWrapper = styled.div``;
+export const InstructionsWrapper = styled.div`
+  margin-top: 37px;
+`;
 
-export const InstructionsHeader = styled.div``;
+export const InstructionsHeader = styled.p`
+  font: italic normal bold 17px Arial;
+  letter-spacing: 0px;
+`;
 
-export const Instructions = styled.div``;
+export const Instructions = styled.p`
+  width: 65%;
+  font: italic normal normal 17px Arial;
+  letter-spacing: 0px;
+`;
 
 export const NumbersWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   gap: 20px;
   margin-top: 25px;
   width: 60%;
