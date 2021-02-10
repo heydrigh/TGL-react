@@ -7,9 +7,11 @@ import Routes from './routes';
 import theme from './styles/themes';
 import GlobalStyle from './styles/global';
 
+import store from './store';
+
 const App = () => {
   return (
-    <Provider>
+    <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Routes />

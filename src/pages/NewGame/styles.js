@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import media from 'styled-media-query';
+import { shade, lighten } from 'polished';
 
 const appearFromLeft = keyframes`
   from {
@@ -68,16 +69,71 @@ export const ChoicesButtons = styled.div`
   margin-top: 20px;
 `;
 
-export const Lotofacil = styled.div`
-
-`;
-
-export const MegaSena = styled.div``;
-
-export const LotoMania = styled.div``;
-
 export const InstructionsWrapper = styled.div``;
 
 export const InstructionsHeader = styled.div``;
 
 export const Instructions = styled.div``;
+
+export const NumbersWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 20px;
+  margin-top: 25px;
+  width: 60%;
+  margin-bottom: 44px;
+`;
+
+export const ControlsWrapper = styled.div`
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const CompleteAndClear = styled.div`
+  button {
+    height: 52px;
+    border: 1px solid #27c383;
+    border-radius: 10px;
+    font: normal normal medium 16px Arial;
+    letter-spacing: 0px;
+    color: #27c383;
+    background: none;
+    transition: background-color 0.4s;
+    padding: 8px;
+
+    &:hover {
+      background-color: ${shade(0.2, '#27c383')};
+      color: #fff;
+    }
+
+    & + button {
+      margin-left: 25px;
+    }
+  }
+`;
+
+export const CartControl = styled.div`
+  button {
+    width: 209px;
+    height: 52px;
+    background: #27c383 0% 0% no-repeat padding-box;
+    border: 1px solid #27c383;
+    border-radius: 10px;
+    font: normal normal bold 16px Arial;
+    letter-spacing: 0px;
+    color: #ffffff;
+    transition: background-color 0.4s;
+
+    &:hover {
+      background-color: ${lighten(0.05, '#27c383')};
+      color: #fff;
+    }
+  }
+
+  svg {
+    vertical-align: middle;
+    margin-right: 28px;
+    color: #fff;
+  }
+`;

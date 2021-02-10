@@ -1,10 +1,14 @@
 import React from 'react';
 import * as S from './styles';
 
-const LotteryButton = ({ lotteryName, color }) => {
+const LotteryButton = (props) => {
   return (
-    <S.Wrapper color={color} value={lotteryName}>
-      {lotteryName}
+    <S.Wrapper
+      onClick={props.clicked}
+      color={props.color}
+      value={props.lotteryName}
+    >
+      {props.lotteryName}
     </S.Wrapper>
   );
 };
