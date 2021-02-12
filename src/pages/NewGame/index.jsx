@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as S from './styles';
 import Menu from '../../components/Menu';
 import LotteryButton from '../../components/LotteryButton';
 import Ball from '../../components/Ball';
 import Cart from '../../components/Cart';
 import api from '../../services/api';
+import { loadTypes } from '../../store/modules/lotterys/actions';
 import { FiShoppingCart } from 'react-icons/fi';
 
-const NewGame = () => {
+const NewGame = (props) => {
   const [lotteryButtons, setLotteryButtons] = useState([]);
   const [selectableNumbers, setSelectableNumbers] = useState([]);
+  const [isActive, setIsActive] = useState([]);
   const [selectedGame, setSelectedGame] = useState('Lotofácil');
+  const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [instruction, setInstruction] = useState(
     'Escolha 15 números para apostar na lotofácil. Você ganha acertando 11, 12, 13, 14 ou 15 números. São muitas chances de ganhar, e agora você joga de onde estiver!'
   );
+
+  useEffect(() => {
+    props.loadTypes('types');
+  }, []);
 
   useEffect(() => {
     try {
@@ -37,6 +46,18 @@ const NewGame = () => {
 
   const handleInstructions = (gameInstructions) => {
     setInstruction(gameInstructions);
+  };
+
+  const handleBallClick = (number) => {
+    const numbers = [];
+    const actives = isActive;
+    numbers.push(number);
+    setSelectedNumbers(numbers);
+    setIsActive(true);
+    actives[number - 1] = !actives[number - 1];
+    setIsActive(actives);
+    console.log(number);
+    console.log(props.types);
   };
 
   return (
@@ -74,7 +95,13 @@ const NewGame = () => {
           <S.NumbersWrapper>
             {selectableNumbers &&
               selectableNumbers.map((number) => (
-                <Ball number={number} key={number} />
+                <Ball
+                  isActive={isActive[number - 1]}
+                  disabled={isActive[number - 1]}
+                  clicked={() => handleBallClick(number)}
+                  number={number}
+                  key={number}
+                />
               ))}
           </S.NumbersWrapper>
           <S.ControlsWrapper>
@@ -95,5 +122,16 @@ const NewGame = () => {
     </>
   );
 };
+const mapStateToProps = (state) => ({
+  types: state.types
+});
 
-export default NewGame;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      loadTypes
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewGame);

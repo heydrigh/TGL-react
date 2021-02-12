@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './styles';
 
-const Ball = ({ number }) => {
+const Ball = ({ number, clicked, isActive, disabled }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper disabled={disabled} isActive={isActive} onClick={clicked}>
       <span>{number}</span>
     </S.Wrapper>
   );

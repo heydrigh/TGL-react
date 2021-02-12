@@ -1,12 +1,18 @@
+import * as actionTypes from './actionTypes';
+
 const INITIAL_STATE = {
-  type: 'Lotofácil',
-  description:
-    'Escolha 15 números para apostar na lotofácil. Você ganha acertando 11, 12, 13, 14 ou 15 números. São muitas chances de ganhar, e agora você joga de onde estiver!',
-  range: 25,
-  price: 2.5,
-  maxNumber: 15,
-  color: '#7F3992',
-  min_cart_value: 30
+  types: {}
 };
 
-const lottery = (state = INITIAL_STATE, action) => {};
+export const lottery = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case actionTypes.FETCH_LOTTERY_REQUEST: {
+      return {
+        types: action.payload
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
