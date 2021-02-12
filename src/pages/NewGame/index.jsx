@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as S from './styles';
 import Menu from '../../components/Menu';
 import LotteryButton from '../../components/LotteryButton';
 import Ball from '../../components/Ball';
 import Cart from '../../components/Cart';
 import api from '../../services/api';
-import { loadTypes } from '../../store/modules/lotterys/actions';
+import * as actions from '../../store/modules/lotterys/actions/actions';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const NewGame = (props) => {
@@ -21,7 +20,7 @@ const NewGame = (props) => {
   );
 
   useEffect(() => {
-    props.loadTypes('types');
+    props.onFecthLottery();
   }, []);
 
   useEffect(() => {
@@ -56,7 +55,6 @@ const NewGame = (props) => {
     setIsActive(true);
     actives[number - 1] = !actives[number - 1];
     setIsActive(actives);
-    console.log(number);
     console.log(props.types);
   };
 
@@ -122,16 +120,18 @@ const NewGame = (props) => {
     </>
   );
 };
-const mapStateToProps = (state) => ({
-  types: state.types
-});
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      loadTypes
-    },
-    dispatch
-  );
+const mapStateToProps = (state) => {
+  return {
+    types: state.types.lottery,
+    loading: state.loading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFecthLottery: () => dispatch(actions.fecthLottery())
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewGame);

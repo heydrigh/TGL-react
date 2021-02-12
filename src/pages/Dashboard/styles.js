@@ -38,8 +38,12 @@ export const FiltersContainer = styled.div`
 export const NewBet = styled.div`
   font: italic normal bold 24px Arial;
   letter-spacing: 0px;
-  color: #b5c401;
+
   margin-left: 200px;
+  a {
+    color: #b5c401;
+    text-decoration: none;
+  }
   svg {
     vertical-align: middle;
   }
@@ -51,6 +55,7 @@ export const GamesWrapper = styled.div`
 
 export const Game = styled.div`
   display: flex;
+  margin-bottom: 30px;
   hr {
     border: 3px solid #7f3992;
     border-radius: 10px;
@@ -64,12 +69,14 @@ export const GameNumbers = styled.div`
   font: italic normal bold 20px Arial;
   letter-spacing: 0px;
   color: #868686;
+  margin-bottom: 15px;
 `;
 
 export const DateAndCost = styled.div`
   font: normal normal normal 17px Arial;
   letter-spacing: 0px;
   color: #868686;
+  margin-bottom: 11px;
 `;
 
 export const GameName = styled.div`
