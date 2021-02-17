@@ -8,12 +8,9 @@ export function* fetchedLotterySaga(action) {
   try {
     const response = yield api.get('/types');
     const fetchedLottery = [];
-    for (let key in response.data) {
-      fetchedLottery.push({
-        ...response.data,
-        id: key
-      });
-    }
+    fetchedLottery.push({
+      ...response.data
+    });
     yield put(actions.fetchLotterySuccess(fetchedLottery));
   } catch (error) {
     yield put(actions.fetchLotteryFail(error));

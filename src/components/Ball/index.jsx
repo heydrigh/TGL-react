@@ -1,9 +1,14 @@
 import React from 'react';
 import * as S from './styles';
 
-const Ball = ({ number, clicked, isActive, disabled }) => {
+const Ball = ({ number, clicked, isActive, disabled, color }) => {
   return (
-    <S.Wrapper disabled={disabled} isActive={isActive} onClick={clicked}>
+    <S.Wrapper
+      color={color}
+      disabled={disabled}
+      isActive={isActive}
+      onClick={clicked}
+    >
       <span>{number}</span>
     </S.Wrapper>
   );

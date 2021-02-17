@@ -3,7 +3,7 @@ import { updateObject } from '../../../utility';
 
 const INITIAL_STATE = {
   lottery: [],
-  loading: false
+  loading: true
 };
 
 const fetchLotteryStart = (state, action) => {

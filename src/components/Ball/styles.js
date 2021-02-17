@@ -13,7 +13,7 @@ export const Wrapper = styled.button`
   color: #ffffff;
   transition: cursor 0.2s;
 
-  background: ${(props) => (props.isActive ? 'red' : '#adc0c4;')};
+  background: ${(props) => (props.isActive ? props.color : '#adc0c4;')};
 
   /* &:hover {
     background: ${shade(0.4, '#adc0c4')};

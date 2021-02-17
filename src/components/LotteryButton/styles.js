@@ -23,4 +23,12 @@ export const Wrapper = styled.button`
         color: #ffffff;
       }
     `}
+
+  ${(props) =>
+    props.active &&
+    css`
+      color: ${props.color};
+      background: ${shade(0.1, `${props.color}`)};
+      color: #ffffff;
+    `}
 `;
