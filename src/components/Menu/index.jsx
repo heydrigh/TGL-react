@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from './styles';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-const Menu = ({ homeText, accountText, logOutText }) => {
+const Menu = ({ homeText, homeLink, accountText, logOutText }) => {
   return (
     <S.Wrapper>
       <S.LogoAndHome>
@@ -11,7 +11,7 @@ const Menu = ({ homeText, accountText, logOutText }) => {
           TGL <hr />
         </S.Logo>
         <S.Home>
-          <Link to="#">{homeText}</Link>
+          <Link to={homeLink}>{homeText}</Link>
         </S.Home>
       </S.LogoAndHome>
       <S.AccountAndLogout>

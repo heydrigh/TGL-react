@@ -3,7 +3,7 @@ import * as S from './styles';
 
 import { BsTrash, BsArrowRight } from 'react-icons/bs';
 
-const Cart = ({ bets }) => {
+const Cart = ({ bets, deleted }) => {
   const totalPrice = bets.reduce((acc, bets) => acc + bets.price, 0);
 
   return (
@@ -14,8 +14,8 @@ const Cart = ({ bets }) => {
           <S.BetsWrapper>
             {bets.length > 0 ? (
               bets.map((bet) => (
-                <S.Bet key={bet.selectedNumbers}>
-                  <S.DeleteButton>
+                <S.Bet key={bet.id}>
+                  <S.DeleteButton onClick={() => deleted(bet.id)}>
                     <BsTrash size={26} />
                   </S.DeleteButton>
                   <S.BetDetails color={bet.color}>

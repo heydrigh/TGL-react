@@ -5,8 +5,10 @@ import Menu from '../../components/Menu';
 import LotteryButton from '../../components/LotteryButton';
 import Ball from '../../components/Ball';
 import Cart from '../../components/Cart';
+import Footer from '../../components/Footer';
 import * as actions from '../../store/modules/lotterys/actions/actions';
 import Spinner from '../../components/Spinner';
+import uuid from 'react-uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -58,13 +60,17 @@ const NewGame = (props) => {
     setSelectedNumbers(numbers);
     actives[number - 1] = !actives[number - 1];
     setIsActive(actives);
-    console.log(numbers);
   };
 
   const completeGameHandler = () => {
     let numbers = [];
-    let randomNumber;
+    let selected = selectedNumbers;
+
     const actives = isActive;
+    for (let i = 1; i <= rules.range; i++) {
+      numbers.push(i);
+    }
+
     if (!chosenGame) {
       toast.error('Escolha um jogo');
       return;
@@ -72,25 +78,32 @@ const NewGame = (props) => {
     if (selectedNumbers.length === rules.max_number) {
       toast.error('Número maximo de números ja escolhido');
     } else {
-      while (numbers.length !== rules.max_number) {
-        do {
-          randomNumber = Math.floor(Math.random() * (rules.range - 1 + 1)) + 1;
-        } while (numbers.some((num) => num === randomNumber));
-        numbers.push(randomNumber);
+      while (selected.length < rules.max_number) {
+        const filteredNumbers = numbers.filter((item) => {
+          return !selected.includes(item);
+        });
+        let randomNumber =
+          filteredNumbers[Math.floor(Math.random() * filteredNumbers.length)];
+        selected.push(randomNumber);
         actives[randomNumber - 1] = !actives[randomNumber - 1];
         setIsActive(actives);
-        setSelectedNumbers(numbers);
       }
+      setSelectedNumbers([...selected]);
     }
+  };
+
+  const handleRemoveBet = (betId) => {
+    setCartGames(cartsGames.filter((bet) => bet.id !== betId));
   };
 
   const addToCartHandler = () => {
     if (selectedNumbers.length === rules.max_number) {
-      const gameDone = { ...rules, selectedNumbers };
-      gameDone.selectedNumbers.map(String);
+      const gameDone = { ...rules, selectedNumbers, id: uuid() };
+      gameDone.selectedNumbers.sort();
       setCartGames([...cartsGames, gameDone]);
       clearGameHandler();
       toastSuccess();
+      console.log(gameDone);
     } else {
       toastWarn(rules.max_number);
     }
@@ -131,7 +144,12 @@ const NewGame = (props) => {
 
   return (
     <>
-      <Menu homeText="Home" accountText="Account" logOutText="Log out" />
+      <Menu
+        homeText="Home"
+        homeLink="/dashboard"
+        accountText="Account"
+        logOutText="Log out"
+      />
       <S.Wrapper>
         <S.GamesWrapper>
           <S.GameHeader>
@@ -193,7 +211,7 @@ const NewGame = (props) => {
             </S.CartControl>
           </S.ControlsWrapper>
         </S.GamesWrapper>
-        <Cart bets={cartsGames} />
+        <Cart bets={cartsGames} deleted={handleRemoveBet} />
       </S.Wrapper>
       <ToastContainer
         position="top-right"
@@ -206,6 +224,7 @@ const NewGame = (props) => {
         draggable
         pauseOnHover
       />
+      <Footer />
     </>
   );
 };

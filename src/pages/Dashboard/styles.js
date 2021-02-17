@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,6 +18,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   margin-left: 390px;
   margin-top: 75px;
+  animation: ${appearFromLeft} 1s;
 `;
 
 export const GamesHeader = styled.div`

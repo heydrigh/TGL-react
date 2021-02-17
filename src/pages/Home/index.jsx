@@ -26,7 +26,7 @@ const Home = () => {
           optionalText="I forgot my password"
           inputFields={inputFields}
           submitButtonText="Log In"
-          submitButtonLink="/newgame"
+          submitButtonLink="/dashboard"
           lastButtonLink="/register"
           lastButtonText="Sign Up"
           lastIconRight={true}
