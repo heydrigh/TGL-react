@@ -5,13 +5,14 @@ import { BsArrowRight } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import LotteryButton from '../../components/LotteryButton';
 import { connect } from 'react-redux';
+import { format } from 'date-fns';
 import * as lotteryActions from '../../store/modules/lotterys/actions/actions';
 import * as betsActions from '../../store/modules/bets/actions/actions';
 import { ToastContainer } from 'react-toastify';
 
 const Dashboard = (props) => {
   const [chosenGame, setChosenGame] = useState('');
-  const [rules, setRules] = useState({});
+  const [filteredGames, setFilteredGames] = useState([]);
   const [games, setGames] = useState([]);
 
   useEffect(() => {
@@ -32,8 +33,8 @@ const Dashboard = (props) => {
       return game.type === gameName;
     });
 
-    setRules(filteredGame[0]);
-    console.log(games);
+    setFilteredGames(games.filter((game) => game.type === gameName));
+    console.log(filteredGame);
   };
 
   return (
@@ -64,7 +65,7 @@ const Dashboard = (props) => {
           </S.NewBet>
         </S.GamesHeader>
         <S.GamesWrapper>
-          {games.length > 0 ? (
+          {games.length > 0 && filteredGames.length === 0 ? (
             games.map((game) => (
               <S.Game key={game.id} color={game.color}>
                 <hr />
@@ -73,7 +74,22 @@ const Dashboard = (props) => {
                     {game.selectedNumbers.sort().join()}
                   </S.GameNumbers>
                   <S.DateAndCost>
-                    30/11/2020 - {game.price.toFixed(2)}
+                    {format(game.date, 'dd/MM/yyyy')} - {game.price.toFixed(2)}
+                  </S.DateAndCost>
+                  <S.GameName color={game.color}>{game.type}</S.GameName>
+                </S.GameDetails>
+              </S.Game>
+            ))
+          ) : filteredGames.length > 0 ? (
+            filteredGames.map((game) => (
+              <S.Game key={game.id} color={game.color}>
+                <hr />
+                <S.GameDetails>
+                  <S.GameNumbers>
+                    {game.selectedNumbers.sort().join()}
+                  </S.GameNumbers>
+                  <S.DateAndCost>
+                    {format(game.date, 'dd/MM/yyyy')} - {game.price.toFixed(2)}
                   </S.DateAndCost>
                   <S.GameName color={game.color}>{game.type}</S.GameName>
                 </S.GameDetails>
