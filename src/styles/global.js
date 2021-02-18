@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -9,7 +9,9 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
   }
+
 
   ${({ theme }) => css`
     html {
@@ -27,6 +29,6 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
   `}
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

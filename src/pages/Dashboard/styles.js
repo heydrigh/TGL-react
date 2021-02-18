@@ -63,13 +63,18 @@ export const NewBet = styled.div`
 
 export const GamesWrapper = styled.div`
   margin-top: 38px;
+  span {
+    font: normal normal normal 20px Arial;
+    letter-spacing: 0px;
+    color: #868686;
+  }
 `;
 
 export const Game = styled.div`
   display: flex;
   margin-bottom: 30px;
   hr {
-    border: 3px solid #7f3992;
+    border: 3px solid ${(props) => props.color && props.color};
     border-radius: 10px;
     margin-right: 15px;
   }
@@ -94,5 +99,5 @@ export const DateAndCost = styled.div`
 export const GameName = styled.div`
   font: italic normal bold 20px Arial;
   letter-spacing: 0px;
-  color: #7f3992;
+  color: ${(props) => props.color && props.color};
 `;

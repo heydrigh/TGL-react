@@ -1,10 +1,33 @@
 import React from 'react';
 import * as S from './styles';
-
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { BsTrash, BsArrowRight } from 'react-icons/bs';
 
-const Cart = ({ bets, deleted }) => {
+const Cart = ({ bets, deleted, onBetsSaved }) => {
   const totalPrice = bets.reduce((acc, bets) => acc + bets.price, 0);
+  const history = useHistory();
+
+  const handleSavedButton = () => {
+    if (bets.length > 0) {
+      onBetsSaved(bets);
+      history.push('/dashboard');
+    } else {
+      toastWarn('Seu carrinho está vazio. Por favor faça ao menos uma aposta.');
+    }
+  };
+
+  const toastWarn = (message) => {
+    toast.warn(message, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+  };
 
   return (
     <>
@@ -38,7 +61,7 @@ const Cart = ({ bets, deleted }) => {
             <strong>CART</strong> TOTAL: R$ {totalPrice.toFixed(2)}
           </S.CartTotal>
         </S.Cart>
-        <S.SaveButton>
+        <S.SaveButton onClick={handleSavedButton}>
           Save <BsArrowRight size={38} />
         </S.SaveButton>
       </S.Wrapper>

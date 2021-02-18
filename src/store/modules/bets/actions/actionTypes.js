@@ -1,0 +1,7 @@
+export const FETCH_BET_START = 'FETCH_BET_START';
+export const FETCH_BET_SUCCESS = 'FETCH_BET_SUCCESS';
+export const FETCH_BET_FAIL = 'FETCH_BET_FAIL';
+
+export const SAVE_BET_START = 'SAVE_BET_START';
+export const SAVE_BET_SUCCESS = 'SAVE_BET_SUCCESS';
+export const SAVE_BET_FAIL = 'SAVE_BET_FAIL';

@@ -5,8 +5,8 @@ import Menu from '../../components/Menu';
 import LotteryButton from '../../components/LotteryButton';
 import Ball from '../../components/Ball';
 import Cart from '../../components/Cart';
-import Footer from '../../components/Footer';
-import * as actions from '../../store/modules/lotterys/actions/actions';
+import * as lotteryActions from '../../store/modules/lotterys/actions/actions';
+import * as betsActions from '../../store/modules/bets/actions/actions';
 import Spinner from '../../components/Spinner';
 import uuid from 'react-uuid';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,7 +21,7 @@ const NewGame = (props) => {
   const [cartsGames, setCartGames] = useState([]);
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [instruction, setInstruction] = useState(
-    'Escolha uma loteria para começar!'
+    'Escolha um jogo para começar!'
   );
 
   useEffect(() => {
@@ -98,11 +98,16 @@ const NewGame = (props) => {
 
   const addToCartHandler = () => {
     if (selectedNumbers.length === rules.max_number) {
-      const gameDone = { ...rules, selectedNumbers, id: uuid() };
+      const gameDone = {
+        ...rules,
+        selectedNumbers,
+        id: uuid(),
+        date: Date.now()
+      };
       gameDone.selectedNumbers.sort();
       setCartGames([...cartsGames, gameDone]);
       clearGameHandler();
-      toastSuccess();
+      toastSuccess('Jogo adicionado ao carrinho com sucesso!');
       console.log(gameDone);
     } else {
       toastWarn(rules.max_number);
@@ -130,8 +135,8 @@ const NewGame = (props) => {
     });
   };
 
-  const toastSuccess = () => {
-    toast.success('Jogo adicionado ao carrinho!', {
+  const toastSuccess = (message) => {
+    toast.success(message, {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -211,7 +216,11 @@ const NewGame = (props) => {
             </S.CartControl>
           </S.ControlsWrapper>
         </S.GamesWrapper>
-        <Cart bets={cartsGames} deleted={handleRemoveBet} />
+        <Cart
+          bets={cartsGames}
+          deleted={handleRemoveBet}
+          onBetsSaved={props.onSaveBet}
+        />
       </S.Wrapper>
       <ToastContainer
         position="top-right"
@@ -224,7 +233,6 @@ const NewGame = (props) => {
         draggable
         pauseOnHover
       />
-      <Footer />
     </>
   );
 };
@@ -238,7 +246,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFecthLottery: () => dispatch(actions.fecthLottery())
+    onFecthLottery: () => dispatch(lotteryActions.fecthLottery()),
+    onSaveBet: (bets) => dispatch(betsActions.saveBetSuccess(bets))
   };
 };
 
