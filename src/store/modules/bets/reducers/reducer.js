@@ -3,12 +3,13 @@ import { updateObject } from '../../../utility';
 
 const initialState = {
   bets: [],
-  loading: false
+  loading: false,
+  error: false
 };
 
 const saveBet = (state, action) => {
   const updatedState = {
-    bets: action.bets
+    bets: action.bets.concat(state.bets)
   };
   return updateObject(state, updatedState);
 };

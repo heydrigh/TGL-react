@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import media from 'styled-media-query';
 
 const appearFromLeft = keyframes`
@@ -27,5 +27,3 @@ export const Wrapper = styled.div`
     margin-top: 70px;
   `}
 `;
-
-
