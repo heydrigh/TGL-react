@@ -6,11 +6,13 @@ import ResetPassword from '../pages/ResetPassword';
 import Register from '../pages/Register';
 import NewGame from '../pages/NewGame';
 import Dashboard from '../pages/Dashboard';
+import Account from '../pages/Account';
 
 const Routes = () => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/dashboard" component={Dashboard} />
+    <Route path="/account" component={Account} />
     <Route path="/resetpassword" component={ResetPassword} />
     <Route path="/register" component={Register} />
     <Route path="/newgame" component={NewGame} />

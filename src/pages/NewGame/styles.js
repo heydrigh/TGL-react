@@ -25,8 +25,8 @@ export const Wrapper = styled.div`
   animation: ${appearFromLeft} 1s;
 
   ${media.lessThan('medium')`
-    flex-direction: column;
     margin-top: 70px;
+    flex-direction: column;
   `}
 `;
 
@@ -35,12 +35,24 @@ export const GamesWrapper = styled.div`
   display: flex;
   align-self: center;
   flex-direction: column;
+
+  ${media.lessThan('medium')`
+    margin-bottom: 20px;
+    margin-left: 400px;
+    margin: auto;
+    padding: 20px;
+  `}
 `;
 
 export const GameHeader = styled.div`
   display: flex;
   text-align: left;
   text-transform: uppercase;
+
+  ${media.lessThan('medium')`
+    flex-direction: row;
+    margin-bottom: 20px;
+  `}
 `;
 
 export const NewBet = styled.h1`
@@ -49,6 +61,10 @@ export const NewBet = styled.h1`
   letter-spacing: 0px;
   color: #707070;
   margin-right: 10px;
+
+  ${media.lessThan('medium')`
+    flex-direction: row;
+  `}
 `;
 
 export const GameName = styled.h1`
@@ -56,12 +72,23 @@ export const GameName = styled.h1`
   font: italic normal 300 24px Arial;
   letter-spacing: 0px;
   color: #707070;
+
+  ${media.lessThan('medium')`
+    flex-direction: row;
+    margin-bottom: 20px;
+  `}
 `;
 
 export const ChoiceWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 33px;
+
+  ${media.lessThan('medium')`
+    flex-direction: row;
+    margin-bottom: 20px;
+
+  `}
 `;
 
 export const ChoiceHeader = styled.div`
@@ -69,11 +96,21 @@ export const ChoiceHeader = styled.div`
   font: italic normal bold 17px Arial;
   letter-spacing: 0px;
   color: #868686;
+
+  ${media.lessThan('medium')`
+  text-align: center;
+  `}
 `;
 
 export const ChoicesButtons = styled.div`
   display: flex;
   margin-top: 20px;
+
+  ${media.lessThan('medium')`
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  `}
 `;
 
 export const InstructionsWrapper = styled.div`
@@ -98,12 +135,25 @@ export const NumbersWrapper = styled.div`
   margin-top: 25px;
   width: 60%;
   margin-bottom: 44px;
+
+  ${media.lessThan('medium')`
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  width: 200px;
+  `}
 `;
 
 export const ControlsWrapper = styled.div`
   width: 60%;
   display: flex;
   justify-content: space-around;
+
+  ${media.lessThan('medium')`
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  `}
 `;
 
 export const CompleteAndClear = styled.div`
@@ -127,6 +177,10 @@ export const CompleteAndClear = styled.div`
       margin-left: 25px;
     }
   }
+
+  ${media.lessThan('medium')`
+  margin-bottom: 10px;
+  `}
 `;
 
 export const CartControl = styled.div`

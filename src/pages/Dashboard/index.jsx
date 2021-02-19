@@ -39,7 +39,12 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Menu homeLink="/" accountText="Account" logOutText="Sair" />
+      <Menu
+        homeLink="/"
+        accountText="Account"
+        logOutText="Sair"
+        accountLink="/account"
+      />
       <S.Wrapper>
         <S.GamesHeader>
           <S.Recent>Recent Games</S.Recent>

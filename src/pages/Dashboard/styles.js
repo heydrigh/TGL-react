@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import media from 'styled-media-query';
 
 const appearFromLeft = keyframes`
   from {
@@ -19,10 +20,19 @@ export const Wrapper = styled.div`
   margin-left: 390px;
   margin-top: 75px;
   animation: ${appearFromLeft} 1s;
+
+  ${media.lessThan('medium')`
+    margin-bottom: 20px;
+    margin: auto;
+  `}
 `;
 
 export const GamesHeader = styled.div`
   display: flex;
+  ${media.lessThan('medium')`
+    justify-content: center;
+    align-items: center;
+  `}
 `;
 
 export const Recent = styled.h4`
@@ -35,12 +45,22 @@ export const Recent = styled.h4`
 export const FilterWrapper = styled.div`
   display: flex;
   margin-left: 46px;
+  ${media.lessThan('medium')`
+   flex-direction: column;
+   margin-left: 0;
+  `}
 `;
 export const FilterSpan = styled.span`
   font: italic normal normal 17px Arial;
   letter-spacing: 0px;
   padding-top: 4px;
   color: #868686;
+
+  ${media.lessThan('medium')`
+   text-align: center;
+   margin-left: -6px;
+   margin-bottom: 4px;
+  `}
 `;
 
 export const FiltersContainer = styled.div`
@@ -59,6 +79,9 @@ export const NewBet = styled.div`
   svg {
     vertical-align: middle;
   }
+  ${media.lessThan('medium')`
+    margin-left: 0;
+  `}
 `;
 
 export const GamesWrapper = styled.div`
@@ -68,6 +91,10 @@ export const GamesWrapper = styled.div`
     letter-spacing: 0px;
     color: #868686;
   }
+
+  ${media.lessThan('medium')`
+    left: 0;
+  `}
 `;
 
 export const Game = styled.div`

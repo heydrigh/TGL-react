@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.button`
   width: 113px;
@@ -12,6 +13,11 @@ export const Wrapper = styled.button`
   letter-spacing: 0px;
 
   transition: background-color 0.2s;
+
+  ${media.lessThan('medium')`
+    margin-bottom: 10px;
+    ;
+  `}
 
   ${(props) =>
     props.color &&

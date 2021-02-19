@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.nav`
   display: flex;
@@ -8,8 +9,11 @@ export const Wrapper = styled.nav`
   padding-right: 200px;
   height: 76px;
   width: 100vw;
-  border-bottom: 2px solid #EBEBEB;
+  border-bottom: 2px solid #ebebeb;
   justify-content: space-around;
+  ${media.lessThan('medium')`
+    margin-left: 12px;
+    `}
 `;
 
 export const LogoAndHome = styled.div`
@@ -21,8 +25,9 @@ export const Logo = styled.div`
   font: italic normal bold 44px Arial;
   letter-spacing: 0px;
   color: #707070;
-    hr {
-    border: 4px solid #B5C401;
+
+  hr {
+    border: 4px solid #b5c401;
     border-radius: 6px;
     width: 106px;
     margin-top: 6px;
@@ -37,10 +42,14 @@ export const Home = styled.div`
   letter-spacing: 0px;
   margin-left: 74px;
   margin-top: 16px;
-    a{
-      color: #707070;
-      text-decoration: none;
-    }
+  ${media.lessThan('medium')`
+    margin-left: 10px;
+    margin-top: 10px;
+    `}
+  a {
+    color: #707070;
+    text-decoration: none;
+  }
 `;
 
 export const AccountAndLogout = styled.div`
@@ -62,6 +71,13 @@ export const AccountAndLogout = styled.div`
 
     svg {
       vertical-align: middle;
+      ${media.lessThan('medium')`
+      display: none;
+    `}
     }
   }
+
+  ${media.lessThan('medium')`
+    margin-left: 10px;
+    `}
 `;

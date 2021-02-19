@@ -153,13 +153,18 @@ const NewGame = (props) => {
         homeText="Home"
         homeLink="/dashboard"
         accountText="Account"
-        logOutText="Log out"
+        accountLink="/account"
+        logOutText="Logout"
       />
       <S.Wrapper>
         <S.GamesWrapper>
           <S.GameHeader>
             <S.NewBet>New bet</S.NewBet>
-            <S.GameName>For Mega-Sena</S.GameName>
+            {chosenGame.length < 1 ? (
+              <S.GameName>Click a game to begin</S.GameName>
+            ) : (
+              <S.GameName>For {chosenGame}</S.GameName>
+            )}
           </S.GameHeader>
           <S.ChoiceWrapper>
             <S.ChoiceHeader>Choose a game</S.ChoiceHeader>
