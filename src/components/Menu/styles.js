@@ -81,3 +81,19 @@ export const AccountAndLogout = styled.div`
     margin-left: 10px;
     `}
 `;
+
+export const LogoutButton = styled.button`
+  text-align: center;
+  font: italic normal bold 20px Arial;
+  letter-spacing: 0px;
+  color: #707070;
+  text-decoration: none;
+  margin-left: 40px;
+  background: none;
+  svg {
+    vertical-align: middle;
+    ${media.lessThan('medium')`
+      display: none;
+    `}
+  }
+`;

@@ -12,6 +12,7 @@ import uuid from 'react-uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 const NewGame = (props) => {
   const [selectableNumbers, setSelectableNumbers] = useState([]);
@@ -23,9 +24,14 @@ const NewGame = (props) => {
   const [instruction, setInstruction] = useState(
     'Escolha um jogo para começar!'
   );
+  const history = useHistory();
 
   useEffect(() => {
     props.onFecthLottery();
+
+    if (!props.auth.isAuth) {
+      history.push('/');
+    }
   }, []);
 
   const handleSelectedGame = (gameRange, gameInstruction, gameName) => {
@@ -47,6 +53,7 @@ const NewGame = (props) => {
     });
 
     setRules(filteredGame[0]);
+    console.log(props.types);
   };
 
   const handleInstructions = (gameInstructions) => {
@@ -101,8 +108,7 @@ const NewGame = (props) => {
       const gameDone = {
         ...rules,
         selectedNumbers,
-        id: uuid(),
-        date: Date.now()
+        game_id: uuid()
       };
       gameDone.selectedNumbers.sort();
       setCartGames([...cartsGames, gameDone]);
@@ -224,7 +230,7 @@ const NewGame = (props) => {
         <Cart
           bets={cartsGames}
           deleted={handleRemoveBet}
-          onBetsSaved={props.onSaveBet}
+          // onBetsSaved={props.onSaveBet}
         />
       </S.Wrapper>
       <ToastContainer
@@ -245,7 +251,8 @@ const NewGame = (props) => {
 const mapStateToProps = (state) => {
   return {
     types: state.types.lottery[0],
-    loading: state.types.loading
+    loading: state.types.loading,
+    auth: state.auth
   };
 };
 

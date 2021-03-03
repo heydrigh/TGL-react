@@ -9,15 +9,23 @@ const Register = () => {
   const inputFields = [
     {
       label: 'Name',
-      type: 'text'
+      type: 'text',
+      name: 'username'
     },
     {
       label: 'Email',
-      type: 'email'
+      type: 'email',
+      name: 'email'
     },
     {
       label: 'Password',
-      type: 'password'
+      type: 'password',
+      name: 'password'
+    },
+    {
+      label: 'Password Confirmation',
+      type: 'password',
+      name: 'password_confirmation'
     }
   ];
   return (
@@ -30,6 +38,7 @@ const Register = () => {
           submitButtonText="Register"
           lastButtonLink="/"
           lastButtonText="Back"
+          method="signUp"
         />
       </S.Wrapper>
       <Footer />

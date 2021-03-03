@@ -20,16 +20,18 @@ export const saveBetFail = (error) => {
   };
 };
 
-export const fetchBetStart = () => {
+export const fetchBetStart = (token) => {
   return {
-    type: actionTypes.FETCH_BET_START
+    type: actionTypes.FETCH_BET_START,
+    token
   };
 };
 
 export const fetchBetSuccess = (bets) => {
   return {
     type: actionTypes.FETCH_BET_SUCCESS,
-    bets: bets
+    bets: bets,
+    loading: false
   };
 };
 
@@ -37,5 +39,11 @@ export const fetchBetFail = (error) => {
   return {
     type: actionTypes.FETCH_BET_FAIL,
     error: error
+  };
+};
+
+export const fecthBet = () => {
+  return {
+    type: actionTypes.FETCH_BET
   };
 };

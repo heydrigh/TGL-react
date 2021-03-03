@@ -9,7 +9,8 @@ const ResetPassword = () => {
   const inputFields = [
     {
       label: 'Email',
-      type: 'text'
+      type: 'text',
+      name: 'email'
     }
   ];
 
@@ -23,6 +24,7 @@ const ResetPassword = () => {
           submitButtonText="Send link"
           lastButtonLink="/"
           lastButtonText="Back"
+          methor="forgot"
         />
       </S.Wrapper>
       <Footer />

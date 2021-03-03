@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Routes from './routes';
 import theme from './styles/themes';
@@ -13,6 +14,7 @@ const App = () => {
         <Routes />
         <GlobalStyle />
       </ThemeProvider>
+      <ToastContainer />
     </BrowserRouter>
   );
 };

@@ -1,9 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as S from './styles';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import * as authActions from '../../store/modules/auth/actions/actions';
 
 const Menu = ({ homeText, homeLink, accountText, accountLink, logOutText }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    dispatch(authActions.logout());
+    history.push('/');
+  };
+
   return (
     <S.Wrapper>
       <S.LogoAndHome>
@@ -16,10 +26,10 @@ const Menu = ({ homeText, homeLink, accountText, accountLink, logOutText }) => {
       </S.LogoAndHome>
       <S.AccountAndLogout>
         <Link to={accountLink}>{accountText}</Link>
-        <Link to="/">
+        <S.LogoutButton onClick={handleLogOut}>
           {logOutText}
           <AiOutlineArrowRight size={30} />
-        </Link>
+        </S.LogoutButton>
       </S.AccountAndLogout>
     </S.Wrapper>
   );

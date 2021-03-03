@@ -2,23 +2,34 @@ import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Menu from '../../components/Menu';
 import { BsArrowRight } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LotteryButton from '../../components/LotteryButton';
+import api from '../../services/api';
 import { connect } from 'react-redux';
-import { format } from 'date-fns';
+
 import * as lotteryActions from '../../store/modules/lotterys/actions/actions';
 import * as betsActions from '../../store/modules/bets/actions/actions';
+
 import { ToastContainer } from 'react-toastify';
 
 const Dashboard = (props) => {
   const [chosenGame, setChosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
   const [games, setGames] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
-    props.onFecthLottery();
-    setGames(props.bets);
-  }, []);
+    if (!props.auth.isAuth) {
+      history.push('/');
+    }
+    props.onFetchLottery();
+    getBets();
+  }, [history]);
+
+  const getBets = async () => {
+    const response = await api.get('/games');
+    setGames(response.data);
+  };
 
   const handleFilter = (gameName) => {
     let gameInfos = [];
@@ -33,7 +44,10 @@ const Dashboard = (props) => {
       return game.type === gameName;
     });
 
-    setFilteredGames(games.filter((game) => game.type === gameName));
+    if (games) {
+      setFilteredGames(games.filter((game) => game.name === gameName));
+    }
+
     console.log(filteredGame);
   };
 
@@ -75,13 +89,11 @@ const Dashboard = (props) => {
               <S.Game key={game.id} color={game.color}>
                 <hr />
                 <S.GameDetails>
-                  <S.GameNumbers>
-                    {game.selectedNumbers.sort().join()}
-                  </S.GameNumbers>
+                  <S.GameNumbers>{game.numbers}</S.GameNumbers>
                   <S.DateAndCost>
-                    {format(game.date, 'dd/MM/yyyy')} - {game.price.toFixed(2)}
+                    {game.created_at} - R$ {game.price.toFixed(2)}
                   </S.DateAndCost>
-                  <S.GameName color={game.color}>{game.type}</S.GameName>
+                  <S.GameName color={game.color}>{game.name}</S.GameName>
                 </S.GameDetails>
               </S.Game>
             ))
@@ -90,13 +102,11 @@ const Dashboard = (props) => {
               <S.Game key={game.id} color={game.color}>
                 <hr />
                 <S.GameDetails>
-                  <S.GameNumbers>
-                    {game.selectedNumbers.sort().join()}
-                  </S.GameNumbers>
+                  <S.GameNumbers>{game.numbers}</S.GameNumbers>
                   <S.DateAndCost>
-                    {format(game.date, 'dd/MM/yyyy')} - {game.price.toFixed(2)}
+                    {game.created_at} - R$ {game.price.toFixed(2)}
                   </S.DateAndCost>
-                  <S.GameName color={game.color}>{game.type}</S.GameName>
+                  <S.GameName color={game.color}>{game.name}</S.GameName>
                 </S.GameDetails>
               </S.Game>
             ))
@@ -116,15 +126,17 @@ const Dashboard = (props) => {
 const mapStateToProps = (state) => {
   return {
     types: state.types.lottery[0],
-    bets: state.bets.bets,
-    loading: state.types.loading
+    bets: state.bets.bets[0],
+    loading: state.types.loading,
+    loadingBets: state.bets.loading,
+    auth: state.auth
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFecthLottery: () => dispatch(lotteryActions.fecthLottery()),
-    onFetchBets: () => dispatch(betsActions.fetchBetSuccess())
+    onFetchLottery: () => dispatch(lotteryActions.fecthLottery()),
+    onFetchBets: () => dispatch(betsActions.fecthBet())
   };
 };
 

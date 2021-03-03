@@ -3,14 +3,26 @@ import * as S from './styles';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BsTrash, BsArrowRight } from 'react-icons/bs';
+import api from '../../services/api';
 
-const Cart = ({ bets, deleted, onBetsSaved }) => {
+const Cart = ({ bets, deleted }) => {
   const totalPrice = bets.reduce((acc, bets) => acc + bets.price, 0);
   const history = useHistory();
 
-  const handleSavedButton = () => {
+  const handleSavedButton = async () => {
+    let game_array = [];
     if (bets.length > 0) {
-      onBetsSaved(bets);
+      bets.map((bet) => {
+        const game = {
+          type_id: bet.id,
+          numbers: bet.selectedNumbers.join(',')
+        };
+        game_array.push(game);
+      });
+      console.log(game_array);
+      const response = await api.post('/games', game_array);
+      toast.success('Seu jogos foras salvos com sucesso!');
+      console.log(response);
       history.push('/dashboard');
     } else {
       toastWarn('Seu carrinho está vazio. Por favor faça ao menos uma aposta.');
@@ -47,7 +59,7 @@ const Cart = ({ bets, deleted, onBetsSaved }) => {
                       <S.LotteryName color={bet.color}>
                         {bet.type}
                       </S.LotteryName>
-                      <S.LoteryPrice>{bet.price.toFixed(2)}</S.LoteryPrice>
+                      <S.LoteryPrice>R$ {bet.price.toFixed(2)}</S.LoteryPrice>
                     </S.NameAndPrice>
                   </S.BetDetails>
                 </S.Bet>

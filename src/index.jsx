@@ -7,8 +7,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import typesReducer from './store/modules/lotterys/reducers/reducer';
 import betsReducer from './store/modules/bets/reducers/reducer';
+import authReducer from './store/modules/auth/reducer/reducer';
 import createSagaMiddleware from 'redux-saga';
 import { watchLottery } from './store/modules/lotterys/sagas';
+import { watchAuth } from './store/modules/auth/sagas';
+import { watchBets } from './store/modules/bets/sagas';
 
 const composeEnhancers =
   process.env.NODE_ENV === 'development'
@@ -17,7 +20,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   types: typesReducer,
-  bets: betsReducer
+  bets: betsReducer,
+  auth: authReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -28,6 +32,8 @@ const store = createStore(
 );
 
 sagaMiddleware.run(watchLottery);
+sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchBets);
 
 ReactDOM.render(
   <React.StrictMode>
