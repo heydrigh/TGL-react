@@ -14,6 +14,7 @@ const Dashboard = (props) => {
   const [chosenGame, setChosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
   const [games, setGames] = useState([]);
+  const [noGameMessage, setNoGameMessage] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -25,8 +26,17 @@ const Dashboard = (props) => {
   }, [history]);
 
   const getBets = async () => {
-    const response = await api.get('/games');
-    setGames(response.data);
+    try {
+      const response = await api.get('/games');
+      setGames(response.data);
+      setNoGameMessage(
+        'Você ainda não tem apostas. Clique em New Bet ecomece a jogar!'
+      );
+    } catch (err) {
+      setNoGameMessage(
+        'Ocorreu um erro ao buscar seus jogos, tente novamente mais tarde'
+      );
+    }
   };
 
   const handleFilter = (gameName) => {
@@ -117,10 +127,7 @@ const Dashboard = (props) => {
               </S.Game>
             ))
           ) : (
-            <span>
-              Você ainda não tem apostas. Clique em <strong>New Bet</strong> e
-              comece a jogar!
-            </span>
+            <span>{noGameMessage}</span>
           )}
         </S.GamesWrapper>
       </S.Wrapper>

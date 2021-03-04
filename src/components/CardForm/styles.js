@@ -43,6 +43,7 @@ export const InputsWrapper = styled.form`
       flex: 1;
       border-bottom: 2px solid #ebebeb;
       color: #9d9d9d;
+      padding-left: 20px;
     }
   }
 `;

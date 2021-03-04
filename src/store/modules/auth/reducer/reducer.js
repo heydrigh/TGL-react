@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 };
 
 const authRequest = (state, action) => {
-  return updateObject(state, { loading: true });
+  return updateObject(state, { loading: true, error: null });
 };
 
 const authSuccess = (state, action) => {
@@ -18,7 +18,8 @@ const authSuccess = (state, action) => {
     isAuth: true,
     loading: false,
     user: action.payload.user,
-    token: action.payload.token
+    token: action.payload.token,
+    error: null
   });
 };
 

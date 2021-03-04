@@ -54,19 +54,6 @@ const CardForm = ({
           break;
         }
 
-      case 'updateUser':
-        try {
-          const updateResponse = await api.put('/users', data);
-          history.push('/dashboard');
-          toast.info('Suas mudanças foram salvas');
-          return updateResponse;
-        } catch (err) {
-          toast.error(
-            'Algo deu errado ao modificar sua conta, tente novamente mais tarde'
-          );
-          break;
-        }
-
       default:
         return;
     }

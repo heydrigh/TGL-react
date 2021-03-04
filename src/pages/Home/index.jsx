@@ -22,7 +22,6 @@ const Home = () => {
     }
 
     if (auth.error) {
-      console.log('aqyu');
       toast.error(
         'Algo deu errado ao fazer login, verifique seu email e senha.'
       );
