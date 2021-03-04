@@ -7,6 +7,7 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import * as authActions from '../../store/modules/auth/actions';
 import api from '../../services/api';
+import { toast } from 'react-toastify';
 
 const CardForm = ({
   header,
@@ -29,14 +30,43 @@ const CardForm = ({
         dispatch(authActions.authRequest(data.email, data.password));
         break;
       case 'signUp':
-        const signInReponse = await api.post('/users', data);
-        history.push('/');
-        return signInReponse;
+        try {
+          const signUpResponse = await api.post('/users', data);
+          toast.success('Conta criada com sucesso, faça seu login!');
+          history.push('/');
+          return signUpResponse;
+        } catch (err) {
+          toast.error(
+            'Algo deu errado ao criar sua conta, tente novamente mais tarde'
+          );
+          break;
+        }
 
       case 'forgot':
-        const forgotReponse = await api.post('/users', data);
-        history.push('/');
-        return forgotReponse;
+        try {
+          const forgotReponse = await api.post('/users', data);
+          history.push('/');
+          return forgotReponse;
+        } catch (err) {
+          toast.error(
+            'Algo deu errado ao recuperar sua senha, tente novamente mais tarde'
+          );
+          break;
+        }
+
+      case 'updateUser':
+        try {
+          const updateResponse = await api.put('/users', data);
+          history.push('/dashboard');
+          toast.info('Suas mudanças foram salvas');
+          return updateResponse;
+        } catch (err) {
+          toast.error(
+            'Algo deu errado ao modificar sua conta, tente novamente mais tarde'
+          );
+          break;
+        }
+
       default:
         return;
     }
@@ -49,7 +79,11 @@ const CardForm = ({
           {inputFields.map((input) => (
             <div key={input.label}>
               <label>{input.label}</label>
-              <input name={input.name} ref={register} type={input.type} />
+              <input
+                name={input.name}
+                ref={register({ required: true })}
+                type={input.type}
+              />
             </div>
           ))}
         </S.InputsWrapper>

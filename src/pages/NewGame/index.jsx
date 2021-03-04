@@ -9,7 +9,7 @@ import * as lotteryActions from '../../store/modules/lotterys/actions/actions';
 import * as betsActions from '../../store/modules/bets/actions/actions';
 import Spinner from '../../components/Spinner';
 import uuid from 'react-uuid';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FiShoppingCart } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -142,7 +142,7 @@ const NewGame = (props) => {
   };
 
   const toastSuccess = (message) => {
-    toast.success(message, {
+    toast.info(message, {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -227,23 +227,8 @@ const NewGame = (props) => {
             </S.CartControl>
           </S.ControlsWrapper>
         </S.GamesWrapper>
-        <Cart
-          bets={cartsGames}
-          deleted={handleRemoveBet}
-          // onBetsSaved={props.onSaveBet}
-        />
+        <Cart bets={cartsGames} deleted={handleRemoveBet} />
       </S.Wrapper>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };

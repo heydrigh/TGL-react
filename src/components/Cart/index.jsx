@@ -19,11 +19,17 @@ const Cart = ({ bets, deleted }) => {
         };
         game_array.push(game);
       });
-      console.log(game_array);
-      const response = await api.post('/games', game_array);
-      toast.success('Seu jogos foras salvos com sucesso!');
-      console.log(response);
-      history.push('/dashboard');
+      try {
+        const response = await api.post('/games', game_array);
+        toast.success('Seu jogos foras salvos com sucesso!');
+        console.log(response);
+        history.push('/dashboard');
+      } catch (err) {
+        console.log(err);
+        toast.error(
+          'Ocorreu um erro ao realizar esta ação, tente novamente mais tarde.'
+        );
+      }
     } else {
       toastWarn('Seu carrinho está vazio. Por favor faça ao menos uma aposta.');
     }
@@ -59,7 +65,13 @@ const Cart = ({ bets, deleted }) => {
                       <S.LotteryName color={bet.color}>
                         {bet.type}
                       </S.LotteryName>
-                      <S.LoteryPrice>R$ {bet.price.toFixed(2)}</S.LoteryPrice>
+                      <S.LoteryPrice>
+                        {' '}
+                        {bet.price.toLocaleString('pt-br', {
+                          style: 'currency',
+                          currency: 'BRL'
+                        })}
+                      </S.LoteryPrice>
                     </S.NameAndPrice>
                   </S.BetDetails>
                 </S.Bet>
@@ -70,7 +82,11 @@ const Cart = ({ bets, deleted }) => {
           </S.BetsWrapper>
 
           <S.CartTotal>
-            <strong>CART</strong> TOTAL: R$ {totalPrice.toFixed(2)}
+            <strong>CART</strong> TOTAL:{' '}
+            {totalPrice.toLocaleString('pt-br', {
+              style: 'currency',
+              currency: 'BRL'
+            })}
           </S.CartTotal>
         </S.Cart>
         <S.SaveButton onClick={handleSavedButton}>

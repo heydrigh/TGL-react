@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const history = useHistory();
@@ -58,7 +58,7 @@ const Home = () => {
           method="login"
         />
       </S.Wrapper>
-      <ToastContainer />
+
       <Footer />
     </>
   );

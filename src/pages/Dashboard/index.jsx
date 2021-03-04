@@ -10,8 +10,6 @@ import { connect } from 'react-redux';
 import * as lotteryActions from '../../store/modules/lotterys/actions/actions';
 import * as betsActions from '../../store/modules/bets/actions/actions';
 
-import { ToastContainer } from 'react-toastify';
-
 const Dashboard = (props) => {
   const [chosenGame, setChosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
@@ -91,7 +89,11 @@ const Dashboard = (props) => {
                 <S.GameDetails>
                   <S.GameNumbers>{game.numbers}</S.GameNumbers>
                   <S.DateAndCost>
-                    {game.created_at} - R$ {game.price.toFixed(2)}
+                    {game.created_at} -{' '}
+                    {game.price.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL'
+                    })}
                   </S.DateAndCost>
                   <S.GameName color={game.color}>{game.name}</S.GameName>
                 </S.GameDetails>
@@ -104,7 +106,11 @@ const Dashboard = (props) => {
                 <S.GameDetails>
                   <S.GameNumbers>{game.numbers}</S.GameNumbers>
                   <S.DateAndCost>
-                    {game.created_at} - R$ {game.price.toFixed(2)}
+                    {game.created_at} -{' '}
+                    {game.price.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL'
+                    })}
                   </S.DateAndCost>
                   <S.GameName color={game.color}>{game.name}</S.GameName>
                 </S.GameDetails>
@@ -118,7 +124,6 @@ const Dashboard = (props) => {
           )}
         </S.GamesWrapper>
       </S.Wrapper>
-      <ToastContainer />
     </>
   );
 };
